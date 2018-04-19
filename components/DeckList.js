@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import { getDecks } from '../utils/api'
 
-export default class DeckList extends Component {
+class DeckList extends Component {
+  componentDidMount () {
+    getDecks().then((data) => console.log(data))
+  }
   render() {
     return (
       <View>
-        <Text>Hello</Text>
+        <Text>DECKS</Text>
       </View>
     )
   }
 }
+export default DeckList
