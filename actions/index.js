@@ -1,8 +1,8 @@
-export const GET_DECKS = 'GET_DECKS'
+export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 
-export function getDecks (decks) {
+export function receiveDecks (decks) {
   return {
-    type: GET_DECKS,
-    decks
+    type: RECEIVE_DECKS,
+    decks,
   }
 }
