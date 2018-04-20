@@ -12,7 +12,7 @@ class DeckList extends Component {
       <View>
         <Text>DECKS</Text>
         {Object.keys(decks).map((key) => 
-          <View>
+          <View key={key}>
             <Text>{decks[key].title}</Text>
             <Text>{decks[key].questions.length} cards</Text>
           </View>
