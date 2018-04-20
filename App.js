@@ -4,6 +4,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import DeckList from './components/DeckList'
+import AddDeck from './components/AddDeck'
 import { TabNavigator } from 'react-navigation'
 
 const Tabs = TabNavigator({
@@ -11,6 +12,12 @@ const Tabs = TabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
+    },
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'Add Deck',
     },
   },
 }, {
