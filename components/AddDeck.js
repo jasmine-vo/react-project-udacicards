@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
+import { addDeck } from '../actions'
+import { NavigationActions } from 'react-navigation'
 
 function SubmitBtn ({ onPress }) {
   return (
@@ -17,9 +20,19 @@ class AddDeck extends Component {
     this.setState({ title: input })
   }
   submit = () => {
-    this.state.title === '' ?
-      alert('Please enter a title.')
-    : alert('New deck created!')
+    this.state.title === ''
+      ? alert('Please enter a title.')
+      : this.props.dispatch(addDeck({
+          [this.state.title]: {
+            title: this.state.title,
+            questions: []
+          }
+        }))
+    this.setState(() => ({ title: '' }))
+    this.goBack()
+  }
+  goBack = () => {
+    this.props.navigation.dispatch(NavigationActions.back({key: 'AddDeck'}))
   }
   render() {
     return (
@@ -35,4 +48,4 @@ class AddDeck extends Component {
   }
 }
 
-export default AddDeck
+export default connect()(AddDeck)
