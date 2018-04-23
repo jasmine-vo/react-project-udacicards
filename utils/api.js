@@ -1,14 +1,17 @@
 import { AsyncStorage } from 'react-native'
-import { DECK_STORAGE_KEY, setDefaultDecks } from './helpers'
+import { DECK_STORAGE_KEY, formatDeckResults } from './helpers'
 
 // get deck results
 export function getDecks () {
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
+    .then(formatDeckResults)
 }
 
 // take in a single id argument and return the deck associated with that id. 
-export function getDeck () {
-
+export function getDeck (key) {
+  return AsyncStorage.getItem(DECK_STORAGE_KEY)
+    .then((results) => JSON.parse(results))
+    .then((results) => results[key])
 }
 
 // take in a single title argument and add it to the decks.
