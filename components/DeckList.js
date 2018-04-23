@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import * as API from '../utils/api'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
+import { StackNavigator } from 'react-navigation'
+import FlashCard from './FlashCard'
 
 class DeckList extends Component {
   componentDidMount() {
     const { dispatch } = this.props
-    
+
     getDecks()
       .then((decks) => dispatch(receiveDecks(decks)))
   }
@@ -19,10 +21,15 @@ class DeckList extends Component {
       <View>
         <Text>DECKS</Text>
         {Object.keys(decks).map((key) => 
-          <View key={key}>
-            <Text>{decks[key].title}</Text>
-            <Text>{decks[key].questions.length} cards</Text>
-          </View>
+          <TouchableOpacity
+            key={key}
+            onPress={() => this.props.navigation.navigate('ViewDeck')}
+          >
+            <FlashCard
+              title={decks[key].title}
+              numOfCards={decks[key].questions.length}
+            />
+          </TouchableOpacity>
         )}
       </View>
     )

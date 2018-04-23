@@ -5,7 +5,8 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
+import ViewDeck from './components/ViewDeck'
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -30,13 +31,23 @@ const Tabs = TabNavigator({
     },
   }
 })
-
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+  },
+  ViewDeck: {
+    screen: ViewDeck,
+    navigationOptions: {
+      header: null
+    }
+  }
+})
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
-          <Tabs />
+          <MainNavigator />
         </View>
       </Provider>
     )
