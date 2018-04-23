@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import * as API from '../utils/api'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
@@ -23,7 +22,10 @@ class DeckList extends Component {
         {Object.keys(decks).map((key) => 
           <TouchableOpacity
             key={key}
-            onPress={() => this.props.navigation.navigate('ViewDeck')}
+            onPress={() => this.props.navigation.navigate(
+              'ViewDeck',
+              { deckId: key }
+            )}
           >
             <FlashCard
               title={decks[key].title}

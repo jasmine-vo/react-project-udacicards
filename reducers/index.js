@@ -1,6 +1,6 @@
 import {
   RECEIVE_DECKS,
-  ADD_DECK
+  ADD_DECK,
 } from '../actions'
 
 function decks (state = {}, action) {
