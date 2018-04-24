@@ -32,5 +32,6 @@ export function addCardToDeck (title, card) {
       const data = JSON.parse(results)
       data[title]['questions'].push(card)
       AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data))
+      return data
     })
 }
