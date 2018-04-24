@@ -8,6 +8,7 @@ import AddDeck from './components/AddDeck'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import ViewDeck from './components/ViewDeck'
 import AddCard from './components/AddCard'
+import { blue, white } from './utils/colors'
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -39,13 +40,19 @@ const MainNavigator = StackNavigator({
   ViewDeck: {
     screen: ViewDeck,
     navigationOptions: {
-      header: null
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      }
     }
   },
   AddCard: {
     screen: AddCard,
     navigationOptions: {
-      header: null
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      }
     }
   }
 })
