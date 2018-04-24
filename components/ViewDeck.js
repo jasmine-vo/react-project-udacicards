@@ -24,9 +24,10 @@ class ViewDeck extends Component {
     'AddCard',
     { title: this.state.title }
   )}
-  startQuiz = () => {
-    console.log('start quiz pressed')
-  }
+  startQuiz = () => {this.props.navigation.navigate(
+    'Quiz',
+    { title: this.state.title }
+  )}
   render() {
     const { title, length } = this.state
     const deck = this.props.decks[title]
