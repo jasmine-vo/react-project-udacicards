@@ -4,6 +4,7 @@ import { getDeck, addCardToDeck } from '../utils/api'
 import FlashCard from './FlashCard'
 import TextButton from './TextButton'
 import { StackNavigator } from 'react-navigation'
+import { connect } from 'react-redux'
 
 class ViewDeck extends Component {
   state = {
@@ -28,13 +29,15 @@ class ViewDeck extends Component {
   }
   render() {
     const { title, length } = this.state
+    const deck = this.props.decks[title]
+    console.log(deck)
 
     return (
       <View>
         <Text>View Deck</Text>
         <FlashCard
-          title={title}
-          numOfCards={length}
+          title={deck ? deck.title : title}
+          numOfCards={deck ? deck.questions.length : length}
         />
         <TextButton onPress={this.addCard}>
           Add Card
@@ -47,4 +50,11 @@ class ViewDeck extends Component {
   }
 }
 
-export default ViewDeck
+function mapStateToProps (decks) {
+  return {
+    decks
+  }
+}
+export default connect(
+  mapStateToProps,
+)(ViewDeck)

@@ -3,6 +3,8 @@ import { View, Text, TextInput } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { addCardToDeck } from '../utils/api'
 import TextButton from './TextButton'
+import { connect } from 'react-redux'
+import { receiveDecks } from '../actions'
 
 class AddCard extends Component {
   state = {
@@ -18,6 +20,7 @@ class AddCard extends Component {
   submit = () => {
     const { title } = this.props.navigation.state.params
     const { question, answer } = this.state
+    const { dispatch } = this.props
     const card = {
       question: question,
       answer: answer
@@ -25,6 +28,7 @@ class AddCard extends Component {
 
     if (question !== '' && answer !== '') {
       addCardToDeck(title, card)
+        .then((updatedDecks) => dispatch(receiveDecks(updatedDecks)))
       
       this.setState(() => ({
         question: '',
@@ -55,4 +59,11 @@ class AddCard extends Component {
   }
 }
 
-export default AddCard
+function mapStateToProps (decks) {
+  return {
+    decks
+  }
+}
+export default connect(
+  mapStateToProps,
+)(AddCard)
