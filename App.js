@@ -7,6 +7,7 @@ import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import ViewDeck from './components/ViewDeck'
+import AddCard from './components/AddCard'
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -37,6 +38,12 @@ const MainNavigator = StackNavigator({
   },
   ViewDeck: {
     screen: ViewDeck,
+    navigationOptions: {
+      header: null
+    }
+  },
+  AddCard: {
+    screen: AddCard,
     navigationOptions: {
       header: null
     }

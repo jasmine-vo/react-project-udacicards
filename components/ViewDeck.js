@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { getDeck } from '../utils/api'
+import { View, Text, TouchableOpacity } from 'react-native'
+import { getDeck, addCardToDeck } from '../utils/api'
 import FlashCard from './FlashCard'
 import TextButton from './TextButton'
+import { StackNavigator } from 'react-navigation'
 
 class ViewDeck extends Component {
   state = {
@@ -18,9 +19,10 @@ class ViewDeck extends Component {
         length: deck.questions.length
       }))
   }
-  addCard = () => {
-    console.log('add card pressed')
-  }
+  addCard = () => {this.props.navigation.navigate(
+    'AddCard',
+    { title: this.state.title }
+  )}
   startQuiz = () => {
     console.log('start quiz pressed')
   }
