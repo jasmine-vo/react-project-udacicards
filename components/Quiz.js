@@ -10,6 +10,7 @@ class Quiz extends Component {
     question: '',
     answer: '',
     showAnswer: false,
+    numOfCards: 0,
   }
   componentDidMount() {
     const { title } = this.props.navigation.state.params
@@ -18,7 +19,8 @@ class Quiz extends Component {
     getDeck(title)
       .then((deck) => this.setState({
         question: deck.questions[index].question,
-        answer: deck.questions[index].answer
+        answer: deck.questions[index].answer,
+        numOfCards: deck.questions.length
       }))
   }
   toggleAnswerQuestion = () => {
@@ -29,9 +31,14 @@ class Quiz extends Component {
     : this.setState({ showAnswer: true }) 
   }
   render() {
-    const { question, answer, showAnswer } = this.state
-    console.log(question)
-    console.log(answer)
+    const {
+      question,
+      answer,
+      showAnswer,
+      index,
+      numOfCards
+    } = this.state
+    console.log(numOfCards)
     return (
       <View>
         <Text>Quiz</Text>
@@ -39,6 +46,13 @@ class Quiz extends Component {
         <TextButton onPress={this.toggleAnswerQuestion}>
           { showAnswer ? 'Question' : 'Answer' }
         </TextButton>
+        <TextButton>
+          Correct
+        </TextButton>
+        <TextButton>
+          Incorrect
+        </TextButton>
+        <Text>Card {index + 1} of {numOfCards}</Text>
       </View>
     )
   }
