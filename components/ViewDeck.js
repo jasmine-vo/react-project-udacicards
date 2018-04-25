@@ -1,59 +1,57 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import { getDeck, addCardToDeck } from '../utils/api'
+import { View, Text } from 'react-native'
 import FlashCard from './FlashCard'
 import TextButton from './TextButton'
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
 class ViewDeck extends Component {
-  state = {
-    title: '',
-    length: '',
+  addCard = () => {
+    const { deck } = this.props
+
+    this.props.navigation.navigate(
+      'AddCard',
+      { title: deck.title }
+    )
   }
-  componentDidMount() {
-    const { deckId } = this.props.navigation.state.params
-    
-    getDeck(deckId)
-      .then((deck) => this.setState({
-        title: deck.title,
-        length: deck.questions.length
-      }))
+  startQuiz = () => {
+    const { deck } = this.props
+
+    this.props.navigation.navigate(
+      'Quiz',
+      { title: deck.title }
+    )
   }
-  addCard = () => {this.props.navigation.navigate(
-    'AddCard',
-    { title: this.state.title }
-  )}
-  startQuiz = () => {this.props.navigation.navigate(
-    'Quiz',
-    { title: this.state.title }
-  )}
   render() {
-    const { title, length } = this.state
-    const deck = this.props.decks[title]
-    console.log(deck)
+    const { deck } = this.props
 
     return (
       <View>
         <Text>View Deck</Text>
         <FlashCard
-          title={deck ? deck.title : title}
-          numOfCards={deck ? deck.questions.length : length}
+          title={deck.title}
+          numOfCards={deck.questions.length}
         />
         <TextButton onPress={this.addCard}>
           Add Card
         </TextButton>
-        <TextButton onPress={this.startQuiz}>
-          Start Quiz
-        </TextButton>
+        {deck.questions.length ?
+          <TextButton onPress={this.startQuiz}>
+            Start Quiz
+          </TextButton>
+        : <Text>
+            Add cards to this deck to begin quizzing yourself!
+          </Text>
+        }
       </View>
     )
   }
 }
 
-function mapStateToProps (decks) {
+function mapStateToProps (state, { navigation }) {
+  const { deckId } = navigation.state.params
   return {
-    decks
+    deck: state[deckId]
   }
 }
 export default connect(
