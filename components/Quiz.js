@@ -31,7 +31,7 @@ class Quiz extends Component {
     
     showAnswer ?
       this.setState({ showAnswer: false })
-    : this.setState({ showAnswer: true }) 
+    : this.setState({ showAnswer: true })
   }
   handleCorrect = () => {
     const { deck, index, score } = this.state
@@ -39,7 +39,9 @@ class Quiz extends Component {
     const newScore = score + 1
 
     if (nextIndex === deck.length) {
-      this.setState({ showScore: true })
+      this.setState({
+        showScore: true,
+        score: newScore, })
     } else {
       this.setState({
         index: nextIndex,
@@ -48,6 +50,7 @@ class Quiz extends Component {
         score: newScore,
       })
     }
+    console.log(score)
   }
   handleIncorrect = () => {
     const { deck, index } = this.state
@@ -93,6 +96,7 @@ class Quiz extends Component {
         : <View>
             <Text>Score</Text>
             <Text>{round((score / deck.length)*100, 2)}%</Text>
+            <Text>You got {score} out of {deck.length} right!</Text>
           </View>
         }
       </View>
