@@ -8,20 +8,23 @@ import AddDeck from './components/AddDeck'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import ViewDeck from './components/ViewDeck'
 import AddCard from './components/AddCard'
-import { blue, white } from './utils/colors'
+import { blue, white, gray } from './utils/colors'
 import Quiz from './components/Quiz'
+import { Ionicons } from '@expo/vector-icons'
 
 const Tabs = TabNavigator({
   DeckList: {
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-albums' size={30} color={tintColor} />
     },
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'Add Deck',
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-create' size={30} color={tintColor} />
     },
   },
 }, {
@@ -29,9 +32,20 @@ const Tabs = TabNavigator({
     header: null
   },
   tabBarOptions: {
+    activeTintColor: blue,
     labelStyle: {
       fontSize: 12,
     },
+    style: {
+      backgroundColor: white,
+      shadowColor: gray,
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowRadius: 6,
+      shadowOpacity: 2
+    }
   }
 })
 const MainNavigator = StackNavigator({
