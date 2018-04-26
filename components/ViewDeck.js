@@ -53,6 +53,7 @@ class ViewDeck extends Component {
           }
         </View>
         <View style={styles.rowContainer}></View>
+        <View style={styles.rowContainer}></View>
       </View>
     )
   }
@@ -89,7 +90,9 @@ const styles = StyleSheet.create({
     borderColor: blue,
     padding: 10,
     height: 45,
-    margin: 20,
+    marginLeft: 100,
+    marginRight: 100,
+    marginBottom: 10,
   },
   addCardBtnText: {
     fontSize: 18,
@@ -99,7 +102,8 @@ const styles = StyleSheet.create({
     backgroundColor: blue,
     padding: 10,
     height: 45,
-    margin: 20,
+    marginLeft: 100,
+    marginRight: 100,
   },
   startQuizBtnText: {
     color: white,

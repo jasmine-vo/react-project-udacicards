@@ -45,7 +45,7 @@ class AddCard extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Add a new card for {title}</Text>
+        <Text style={styles.title}>Add a new card for '{title}'</Text>
         <TextInput
           style={styles.form}
           placeholder='Question'
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     paddingRight: 10,
+    backgroundColor: white,
   },
   title: {
     textAlign: 'center',
