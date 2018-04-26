@@ -3,7 +3,11 @@ import { View, Text } from 'react-native'
 import { getDeck } from '../utils/api'
 import { StackNavigator } from 'react-navigation'
 import TextButton from './TextButton'
-import { round } from '../utils/helpers'
+import {
+  round,
+  clearLocalNotification,
+  setLocalNotification
+} from '../utils/helpers'
 
 class Quiz extends Component {
   state = {
@@ -42,6 +46,8 @@ class Quiz extends Component {
       this.setState({
         showScore: true,
         score: newScore, })
+      clearLocalNotification()
+        .then(setLocalNotification)
     } else {
       this.setState({
         index: nextIndex,
@@ -58,6 +64,8 @@ class Quiz extends Component {
 
     if (nextIndex === deck.length) {
       this.setState({ showScore: true })
+      clearLocalNotification()
+        .then(setLocalNotification)
     } else {
       this.setState({
         index: nextIndex,
