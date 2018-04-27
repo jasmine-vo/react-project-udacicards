@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { getDeck } from '../utils/api'
 import { StackNavigator } from 'react-navigation'
-import TextButton from './TextButton'
 import {
   round,
   clearLocalNotification,

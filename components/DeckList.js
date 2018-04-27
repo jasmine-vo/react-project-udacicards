@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
 import { StackNavigator } from 'react-navigation'
-import FlashCard from './FlashCard'
-import { purple, white, blue, lightGray, gray } from '../utils/colors'
+import { white, blue, lightGray, gray } from '../utils/colors'
 
 class DeckList extends Component {
   componentDidMount() {

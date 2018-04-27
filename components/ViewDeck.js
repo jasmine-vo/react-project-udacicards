@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import FlashCard from './FlashCard'
-import TextButton from './TextButton'
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import { white, blue, lightGray, gray } from '../utils/colors'
@@ -48,7 +46,7 @@ class ViewDeck extends Component {
             <Text style={styles.startQuizBtnText}>Start Quiz</Text>
           </TouchableOpacity>
           : <Text>
-              Add cards to this deck to begin quizzing yourself!
+              Add cards to this deck to start studying!
             </Text>
           }
         </View>
