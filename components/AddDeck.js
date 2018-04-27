@@ -29,6 +29,7 @@ class AddDeck extends Component {
     this.setState({ title: input })
   }
   submit = () => {
+    const { title } = this.state
     if (this.state.title !== '') {
       this.props.dispatch(addDeck({
         [this.state.title]: {
@@ -37,16 +38,20 @@ class AddDeck extends Component {
         }
       }))
       saveDeckTitle(this.state.title)
+
+      this.goToDeck(this.state.title)
       
       this.setState(() => ({ title: '' }))
       
-      this.goBack()
     } else {
       alert('Please enter a title.')
     }
   }
-  goBack = () => {
-    this.props.navigation.dispatch(NavigationActions.back({key: 'AddDeck'}))
+  goToDeck = (title) => {
+    this.props.navigation.navigate(
+      'ViewDeck',
+      { deckId: title }
+    )
   }
   render() {
     return (
