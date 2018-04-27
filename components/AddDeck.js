@@ -30,19 +30,24 @@ class AddDeck extends Component {
   }
   submit = () => {
     const { title } = this.state
-    if (this.state.title !== '') {
-      this.props.dispatch(addDeck({
-        [this.state.title]: {
-          title: this.state.title,
-          questions: []
-        }
-      }))
-      saveDeckTitle(this.state.title)
+    const { decks } = this.props
 
-      this.goToDeck(this.state.title)
-      
-      this.setState(() => ({ title: '' }))
-      
+    if (this.state.title !== '') {
+      if (decks[title]) {
+        alert('A deck with this title already exists. Please choose a different title.')
+      } else {
+        this.props.dispatch(addDeck({
+          [this.state.title]: {
+            title: this.state.title,
+            questions: []
+          }
+        }))
+        saveDeckTitle(this.state.title)
+
+        this.goToDeck(this.state.title)
+        
+        this.setState(() => ({ title: '' }))
+      }
     } else {
       alert('Please enter a title.')
     }
@@ -123,4 +128,11 @@ const styles = StyleSheet.create({
   },
 })
 
-export default connect()(AddDeck)
+function mapStateToProps (decks) {
+  return {
+    decks
+  }
+}
+export default connect(
+  mapStateToProps,
+)(AddDeck)
