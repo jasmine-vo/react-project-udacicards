@@ -9,6 +9,7 @@ import {
   setLocalNotification
 } from '../utils/helpers'
 import { white, blue, lightGray } from '../utils/colors'
+import { NavigationActions } from 'react-navigation'
 
 class Quiz extends Component {
   state = {
@@ -75,6 +76,17 @@ class Quiz extends Component {
       })
     }
   }
+  startOver = () => {
+    this.setState({
+      index: 0,
+      score:0,
+      showScore: false,
+      showAnswer: false
+    })
+  }
+  goBack = () => {
+    this.props.navigation.dispatch(NavigationActions.back())
+  }
   render() {
     const {
       question,
@@ -102,13 +114,13 @@ class Quiz extends Component {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.correctBtn}
+              style={styles.blueBtn}
               onPress={this.handleCorrect}
             >
               <Text style={styles.submitBtnText}>Correct</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.incorrectBtn}
+              style={styles.outlineBtn}
               onPress={this.handleIncorrect}
             >
               <Text style={styles.submitBtnText}>Incorrect</Text>
@@ -119,6 +131,18 @@ class Quiz extends Component {
             <Text style={styles.subtitle}>Score</Text>
             <Text style={styles.subtitle}>{round((score / deck.length)*100, 2)}%</Text>
             <Text style={styles.subtitle}>You got {score} out of {deck.length} right!</Text>
+            <TouchableOpacity
+              style={styles.blueBtn}
+              onPress={this.startOver}
+            >
+              <Text style={styles.submitBtnText}>Restart Quiz</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.outlineBtn}
+              onPress={this.goBack}
+            >
+              <Text style={styles.submitBtnText}>Back to Deck</Text>
+            </TouchableOpacity>
           </View>
         }
       </View>
@@ -162,7 +186,7 @@ const styles = StyleSheet.create({
     height: 45,
     margin: 20,
   },
-  correctBtn: {
+  blueBtn: {
     backgroundColor: blue,
     padding: 10,
     height: 45,
@@ -170,7 +194,7 @@ const styles = StyleSheet.create({
     marginRight: 100,
     marginBottom: 10,
   },
-  incorrectBtn: {
+  outlineBtn: {
     backgroundColor: lightGray,
     padding: 10,
     height: 45,
