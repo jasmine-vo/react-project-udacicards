@@ -4,7 +4,7 @@ This is the final assessment project for Udacity's React Native course.
 
 UdaciCards is a mobile application that allows users to study collections of flashcards.  The app allows users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
-This project was bootstrapped with Create React Native App.
+This project was bootstrapped with Create React Native App and was tested on an iOS emulator.
 
 ## Getting Started
 
